@@ -1,0 +1,30 @@
+<h2>Car Auction Calculator</h2>
+<div class="container">
+ 
+  <form (ngSubmit)="calculateTotal()">
+    <div class="form-group">
+      <label for="vehicleBasePrice">Vehicle Base Price:</label>
+      <input type="number" class="form-control" id="vehicleBasePrice" [(ngModel)]="vehicleBasePrice" name="vehicleBasePrice" required (change)="calculateTotal()">
+    </div>
+    <div class="form-group">
+      <label for="vehicleType">Vehicle Type:</label>
+      <select class="form-control" id="vehicleType" [(ngModel)]="vehicleType" name="vehicleType" (change)="calculateTotal()" required>
+        <option *ngFor="let type of vehicleTypes" [ngValue]="type">{{ type.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <h4>Fee List:</h4>
+      <ul>
+        <li>Basic Fee: {{ feesPrice?.basicFee }}</li>
+        <li>Special Fee: {{ feesPrice?.specialFee }}</li>
+        <li>Association Fee: {{ feesPrice?.associationFee }}</li>
+        <li>Storage Fee: {{ feesPrice?.storageFee }}</li>
+      </ul>
+    </div>
+    <div class="form-group">
+      <label>Total Price:</label>
+      <input type="text" class="form-control" value="{{ feesPrice?.totalPrice }}" disabled>
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate Total</button>
+  </form>
+</div>
